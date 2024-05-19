@@ -2,6 +2,7 @@ import constants
 import os
 import smtplib
 import dotenv
+import logger
 
 dotenv.load_dotenv()
 
@@ -13,13 +14,13 @@ class RepeatPrescription:
     def get_patient_details(self):
         env_vars = dict(os.environ)
         # pull all patient details (eg name, address, email...) from environ variables based on intitials
-        patient_deets = {k: v for k,v in env_vars.items() if k.startswith(f"{self.intitals}_")}
+        patient_details = {k: v for k,v in env_vars.items() if k.startswith(f"{self.intitals}_")}
 
-        self.name = patient_deets.get(f"{self.intitals}_NAME")
-        self.dob = patient_deets.get(f"{self.intitals}_DOB")
-        self.address = patient_deets.get(f"{self.intitals}_ADDRESS")
-        self.email_address = patient_deets.get(f"{self.intitals}_EMAIL_ADDRESS")
-        self.email_pass = patient_deets.get(f"{self.intitals}_EMAIL_PASS")
+        self.name = patient_details.get(f"{self.intitals}_NAME")
+        self.dob = patient_details.get(f"{self.intitals}_DOB")
+        self.address = patient_details.get(f"{self.intitals}_ADDRESS")
+        self.email_address = patient_details.get(f"{self.intitals}_EMAIL_ADDRESS")
+        self.email_pass = patient_details.get(f"{self.intitals}_EMAIL_PASS")
 
     def get_medication_list(self) -> list:
         env_vars = dict(os.environ)
@@ -56,9 +57,8 @@ class RepeatPrescription:
 
         sender_email = self.email_address
         sender_password = self.email_pass
-        print(sender_email, sender_password)
         subject = "Prescription"
-        receiver_email = constants.CHEMIST_EMAIL_ADDRESS
+        receiver_email = constants.MB_EMAIL_ADDRESS
 
         try:
             server = smtplib.SMTP(smtp_server, smtp_port)
@@ -71,14 +71,12 @@ class RepeatPrescription:
             server.quit()
 
         except smtplib.SMTPAuthenticationError as e:
-            print(f"Authentication error: {e}")
+            logger.error(f"Authentication error: {e}")
         except smtplib.SMTPException as e:
-            print(f"An error occurred while sending the email: {e}.")
+            logger.error(f"An error occurred while sending the email: {e}.")
         except Exception as e:
-            print(f"An unexpected error occurred: {e}.")
-        finally:
-            if server:
-                server.quit()
+            logger.error(f"An unexpected error occurred: {e}.")
+
 
 def run(patient_intitals):
 
