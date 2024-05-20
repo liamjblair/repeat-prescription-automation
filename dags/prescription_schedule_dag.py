@@ -1,7 +1,6 @@
 from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
-from gather_user_data import main
-# from userdata_test import main
+from src.repeat_prescription_run import run
 from datetime import datetime, timedelta
 
 
@@ -22,7 +21,7 @@ dag = DAG (
 
 task = PythonOperator(
         task_id="gather_user_data",
-        python_callable=main,
+        python_callable=run,
         dag=dag
     )
 
