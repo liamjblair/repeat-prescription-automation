@@ -2,10 +2,10 @@
 
 ## Overview: 
 
-Simple project automating repeat prescription of meditcations in the UK. Patient details are all held in .env variables such as address, emaill address and list of medications required. Airflow is used to trigged a script that sends of the required prescrition monthly to the doctors repeat prescription line.
+Simple python project that automates the process of requesting repeat prescriptions for patients based on their initials. It utilizes environment variables to fetch patient details and medication lists, constructs an email body, and sends the prescription request to a specified email address. Airflow is used to trigged a script that sends of the required prescription monthly to the doctors repeat prescription line.
 
 ## Skills/Technologies
-Python / Apache Airflow / SMTLIB
+Python / Apache Airflow / SMTLIB / Logging
 
 ## Installation:
 Clone this repository to your local machine.
