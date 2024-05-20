@@ -5,7 +5,7 @@
 Simple python project that automates the process of requesting repeat prescriptions for patients based on their initials. It utilizes environment variables to fetch patient details and medication lists, constructs an email body, and sends the prescription request to a specified email address. Airflow is used to trigged a script that sends of the required prescription monthly to the doctors repeat prescription line.
 
 ## Skills/Technologies
-Python / Apache Airflow / SMTLIB / Logging
+Python / Apache Airflow / Docker / SMTLIB / Logging
 
 ## Installation:
 Clone this repository to your local machine.
