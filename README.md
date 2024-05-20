@@ -2,7 +2,7 @@
 
 ## Overview: 
 
-Simple project automating repeat prescription of meditcations in the UK. Patient details are all held in .env variables such as address, emaill address and list of medications required. Airflow is used to trigged a script that sends of the required prescrition monthly to the doctors repeat prescription line. s
+Simple project automating repeat prescription of meditcations in the UK. Patient details are all held in .env variables such as address, emaill address and list of medications required. Airflow is used to trigged a script that sends of the required prescrition monthly to the doctors repeat prescription line.
 
 ## Skills/Technologies
 Python / Apache Airflow / SMTLIB
